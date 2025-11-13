@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@reference "tailwindcss";
+
+/* Глобальні токени бренду */
+:root {
+  --brand-primary: #004890; /* синій */
+  --brand-accent:  #F9C908; /* жовтий */
+}
+
+html, body, #root {
+  height: 100%;
+  background: #f8fafc;
+}
+
+body {
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, 'Noto Sans', sans-serif;
+}
+
+.font-title {
+  font-family: 'Engebrechtre', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0; /* avoid wavy look from excessive tracking */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: 1;
+}
+
+/* Unified stat number styling to keep sizes and alignment consistent */
+.stat-number {
+  font-size: 2.25rem; /* Tailwind text-4xl */
+  line-height: 1;     /* leading-none */
+  font-weight: 700;   /* font-bold */
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums; /* align digits consistently */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Локальні утиліти (НЕ використовуємо їх в @apply) */
+.text-brand-primary { color: var(--brand-primary); }
+.bg-brand-primary    { background-color: var(--brand-primary); }
+.bg-brand-accent     { background-color: var(--brand-accent); }
+
+/* Утиліти UI — тільки Tailwind-класи в @apply */
+.card { @apply bg-white rounded-2xl shadow-lg p-5; }
+
+.btn { 
+  @apply inline-flex items-center justify-center rounded-xl px-4 py-2 
+         border border-gray-200 bg-white hover:bg-gray-50 transition;
+}
+
+/* ВАЖЛИВО: без @apply bg-brand-primary — ставимо колір напряму */
+.btn-primary {
+  @apply text-white border-transparent;
+  background-color: var(--brand-primary);
+}
+
+/* Keep primary button readable on hover */
+.btn-primary:hover {
+  background-color: var(--brand-primary) !important;
+  color: #fff !important;
+  filter: brightness(0.95);
+}
+
+.input { 
+  @apply w-full rounded-xl border border-gray-200 px-3 py-2 
+         focus:outline-none focus:ring-2 focus:ring-blue-500; 
+}
+
+.select { 
+  @apply rounded-xl border border-gray-200 px-3 py-2 
+         focus:outline-none focus:ring-2 focus:ring-blue-500; 
+}
+
+.badge { @apply inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-sm; }
+
+/* Sidebar: keep labels in one line and icons fixed-size */
+aside .space-y-3 .flex { min-width: 0; }
+aside .space-y-3 .flex > svg { flex-shrink: 0; }
+aside .space-y-3 .flex > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
